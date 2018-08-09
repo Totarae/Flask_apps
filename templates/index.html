@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Data Collector App</title>
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Collecting height</h1>
+        <h3>Fill to get statistics</h3>
+        <form action="{{url_for('success')}}" method="POST">
+            <input title="Your email will be safe"
+                   placeholder="Enter your email"
+                   type="email"
+                   name="email_name"
+                   required><br>
+            <input title="Your data will be safe"
+                   placeholder="Enter your data"
+                   type="number"
+                   min="50",
+                   max="300"
+                   name="height_name"
+                   required>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+</body>
+</html>
