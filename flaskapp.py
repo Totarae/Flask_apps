@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from send_email import send_email
 
 app = Flask(__name__)
 
@@ -27,10 +28,14 @@ def success():
         email=request.form["email_name"]
         height=request.form["height_name"]
         print(email, height)
-        data=Data(email,height)
-        db.session.add(data)
-        db.session.commit()
-        return render_template("success.html")
+        if db.session.query(Data).filter(Data.email_==email).count() == 0:
+            data=Data(email,height)
+            db.session.add(data)
+            send_email(email,height)
+            db.session.commit()
+            return render_template("success.html")
+        return render_template("index.html",
+                                   text="Doubled email. Try another.")
 
 if __name__ == '__main__':
     app.debug=True

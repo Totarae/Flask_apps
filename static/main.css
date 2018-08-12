@@ -38,3 +38,8 @@ html,body {
     height: 30px;
     background: steelblue;
 }
+
+.message {
+    font-size: 15px;
+    color: #ff9999;
+}
