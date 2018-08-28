@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:user@localhost/pgdb
 db=SQLAlchemy(app)
 
 class Data(db.Model):
-    __tablename__="data"
+    __tablename__="mhdata"
     id=db.Column(db.Integer, primary_key=True)
     email_=db.Column(db.String(120), unique=True)
     height_=db.Column(db.Integer)
@@ -31,7 +31,7 @@ def success():
         if db.session.query(Data).filter(Data.email_==email).count() == 0:
             data=Data(email,height)
             db.session.add(data)
-            send_email(email,height)
+            #send_email(email,height)
             db.session.commit()
             return render_template("success.html")
         return render_template("index.html",
